@@ -10,17 +10,24 @@
 </head>
 
 <body>
-
     <div>
         <!-- <button id="start-button"><b>StartGame</b></button>
         
         <p class="p">Use the left and right arrow to save your live!</p> -->
 
-        <!-- <p>GAME OVER!</p> -->
         
-        <h1>Score: <span>0</span></h1>
+        <h1>Score: <span id="score">0</span></h1>
+
     </div>
-    <canvas id="canvas" width="700" height="800"></canvas>
+    <div class="hidden loser">
+        GAME OVER.
+        <img src="./UFO-mad.png" alt="Sad-marsi">
+    </div>
+    <div class="hidden winner">
+        You saved Marsi!
+        <img src="./UFO-happy-no-background.png" alt="Marsi-happy">
+    </div>
+    <canvas id="canvas" width="900" height="800"></canvas>
     <script src="index.js"></script>
 </body>
 

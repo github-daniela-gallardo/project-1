@@ -1,14 +1,23 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 
+let scoreElement = document.getElementById("score")
+let score = 0
+
+let playerImg = new Image();
+playerImg.src = "./UFO-scare.png"
+
+let meteorito = new Image();
+meteorito.src = "./meteorito.png"
+
 class player {
-    constructor(x, y, width, height, color) {
+    constructor(x, y, width, height, image) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.color = color;
 
+        this.image = image
     }
 
     moveLeft() {
@@ -27,9 +36,10 @@ class player {
         this.y += 10;
     }
     draw() {
+        ctx.drawImage(this.image, this.x , this.y, this.width, this.height);
 
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
 
     }
     collisionCheck(obstacle) {
@@ -40,24 +50,24 @@ class player {
             this.height + this.y > obstacle.y
         ) {
             // Collision detected!
-            //console.log(detected)
+
             return true
 
         } else {
-            // No collision
+
             return false
         }
     }
 }
 
 class obstacle extends player {
-
     moveDown() {
-        this.y += 1
+        this.y += 3
     }
 }
 
-let myPlayer = new player(325, 740, 50, 50, "orange");
+let myPlayer = new player(325, 740, 150, 150, playerImg);
+// let myPlayer = new player(325, 740, 50, 50, "orange");
 
 
 window.addEventListener("keydown", function (e) {
@@ -79,14 +89,31 @@ window.addEventListener("keydown", function (e) {
 
 })
 
+let bounceCheck = () => {
+
+    if (myPlayer.x >= canvas.width - myPlayer.width) {
+
+        myPlayer.x = canvas.width - (myPlayer.width + 1);
+
+    } else if (myPlayer.y >= canvas.height - myPlayer.height) {
+        myPlayer.y = canvas.height - (myPlayer.height + 1);
+
+    } else if (myPlayer.y < 0) {
+        myPlayer.y = 0;
+    } else if (myPlayer.x < 0) {
+        myPlayer.x = 0;
+    }
+
+}
+
+
+
+
 
 let intervalID;
-let score = 0;
 let fallingObstaclesArr = [];
 let frameCount = 0;
 
-// const fallingObsticles = new obstacle(0, 0, 100, 80, "black")
-// fallingObsticles.draw();
 
 
 
@@ -95,17 +122,18 @@ const animationLoop = function () {
 
     frameCount++;
 
-    if (frameCount % 180 == 0) {
-        const fallingObstacles = new obstacle(0, 0, 180, 80, "yellow");
-        const fallingObstacles2 = new obstacle(500, 0, 200, 80, "pink");
-        const fallingObstacles3 = new obstacle(250, 0, 150, 80, "blue");
+    if (frameCount % 120 == 0) {
+
+        let randomWidth = 100 * Math.random() + 100;
+        let randomHeight = 80 * Math.random() +100;
+        let randomX = (700 - randomWidth) * Math.random();
+
+        const fallingObstacles = new obstacle(randomX, 0, randomWidth, randomHeight, meteorito);
 
         fallingObstaclesArr.push(fallingObstacles);
-        fallingObstaclesArr.push(fallingObstacles2);
-        fallingObstaclesArr.push(fallingObstacles3);
     }
 
-
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 
@@ -117,15 +145,33 @@ const animationLoop = function () {
         if (myPlayer.collisionCheck(fallingObstaclesArr[i])) {
             clearInterval(intervalID);
 
+            document.querySelector(".loser.hidden").classList.remove('hidden')
+
             // display game over and sad music.
-            // score++ every time a new falling obstacle reaches the bottom 
+
         }
+
+
+        if (fallingObstaclesArr[i].y >= canvas.height) {
+            score += 1;
+            scoreElement.innerText = `${score}`;
+            fallingObstaclesArr.shift()
+        }
+
+        if (score === 5) {
+            clearInterval(intervalID);
+            document.querySelector(".winner.hidden").classList.remove('hidden')
+
+        }
+
 
 
         myPlayer.draw();
 
     }
 
+    bounceCheck()
+   
 }
 
 intervalID = setInterval(animationLoop, 16);

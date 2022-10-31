@@ -1,27 +1,69 @@
 #canvas {
-    border: solid black;  
-    background-image:url(/background.jpeg);
+    border: solid black;
+    background-image: url(/background.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 body {
-    margin:auto; 
+    margin: auto;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
 }
 
 #start-button {
     font-size: 25px;
-    background-color: rgb(4, 180, 4);
+    background-color: rgb(168, 19, 232);
     color: #fff;
     padding: 20px 40px;
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
     margin-bottom: 20px;
+    /* display: flex;
+    align-content: center; */
 }
+
 .p {
-    color:black;
+    color: black;
     font-size: 25px;
     font-style: italic;
+}
+
+h1 {
+    color: rgb(168, 19, 232);
+       /* box-shadow: 10px 10px 5px black; */
+}
+
+
+.winner {
+    display: block;
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 5px 5px 5px rgb(168, 19, 232);
+}
+
+.winner.hidden {
+    display: none;
+}
+
+.loser.hidden {
+    display: none;
+}
+
+.loser {
+    display: block;
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 5px 5px 5px rgb(168, 19, 232);
 }
