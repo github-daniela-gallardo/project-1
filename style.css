@@ -19,9 +19,12 @@ body {
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-top: 400px;
+    position: absolute;
+   
     /* display: flex;
-    align-content: center; */
+    justify-content: center;
+    flex-direction: column; */
 }
 
 .p {

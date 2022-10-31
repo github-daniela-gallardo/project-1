@@ -1,8 +1,20 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 
+let intervalID;
+let fallingObstaclesArr = [];
+let frameCount = 0;
+
 let scoreElement = document.getElementById("score")
 let score = 0
+
+let start = () => {
+    startButton.style.visibility = "hidden"
+    intervalID = setInterval(animationLoop, 16);
+}
+
+let startButton = document.getElementById('start-button')
+startButton.addEventListener('click', start)
 
 let playerImg = new Image();
 playerImg.src = "./UFO-scare.png"
@@ -110,9 +122,9 @@ let bounceCheck = () => {
 
 
 
-let intervalID;
-let fallingObstaclesArr = [];
-let frameCount = 0;
+// let intervalID;
+// let fallingObstaclesArr = [];
+// let frameCount = 0;
 
 
 
@@ -146,6 +158,7 @@ const animationLoop = function () {
             clearInterval(intervalID);
 
             document.querySelector(".loser.hidden").classList.remove('hidden')
+            
 
             // display game over and sad music.
 
@@ -174,4 +187,4 @@ const animationLoop = function () {
    
 }
 
-intervalID = setInterval(animationLoop, 16);
+// intervalID = setInterval(animationLoop, 16);
