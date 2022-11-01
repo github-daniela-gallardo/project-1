@@ -1,30 +1,41 @@
+.canva{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 #canvas {
     border: solid black;
     background-image: url(/background.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    
+    
 }
 
 body {
     margin: auto;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* text-align: center; */
 }
 
 #start-button {
     font-size: 25px;
     background-color: rgb(168, 19, 232);
     color: #fff;
-    padding: 20px 40px;
+    padding: 20px 20px;
     border: 0;
     box-shadow: 0;
-    border-radius: 5px;
-    margin-top: 400px;
+    border-radius: 10px;
+    margin-top: 100px;
     position: absolute;
-   
-    /* display: flex;
+
+}
+.button {
+    
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    flex-direction: column; */
 }
 
 .p {
@@ -35,20 +46,46 @@ body {
 
 h1 {
     color: rgb(168, 19, 232);
-       /* box-shadow: 10px 10px 5px black; */
+    box-sizing: border-box;
+    padding-top: 5px;
+    width: 190px;
+    height: 50px;
+    border: 1px solid rgb(168, 19, 232);
+    background: white;
+    margin-top: 10px;
+    text-align: center;
 }
+
+.score-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+.instructions {
+    text-align: center;
+    
+}
+
+
+
 
 
 .winner {
     display: block;
     color: white;
-    font-size: 6rem;
+    font-size: 4rem;
     font-weight: bold;
     position: absolute;
-    top: 65%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 5px 5px 5px rgb(168, 19, 232);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .winner.hidden {
@@ -62,11 +99,14 @@ h1 {
 .loser {
     display: block;
     color: white;
-    font-size: 6rem;
+    font-size: 4rem;
     font-weight: bold;
     position: absolute;
-    top: 65%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 5px 5px 5px rgb(168, 19, 232);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

@@ -74,11 +74,11 @@ class player {
 
 class obstacle extends player {
     moveDown() {
-        this.y += 3
+        this.y += 5
     }
 }
 
-let myPlayer = new player(325, 740, 150, 150, playerImg);
+let myPlayer = new player(325, 740, 130, 120, playerImg);
 // let myPlayer = new player(325, 740, 50, 50, "orange");
 
 
@@ -136,11 +136,12 @@ const animationLoop = function () {
 
     if (frameCount % 120 == 0) {
 
-        let randomWidth = 100 * Math.random() + 100;
-        let randomHeight = 80 * Math.random() +100;
-        let randomX = (700 - randomWidth) * Math.random();
+        // do this if you want to get random sizes of the falling obstacle but since is an image leave one specific size. 
+        // let randomWidth = 100 * Math.random() + 100;
+        // let randomHeight = 100 * Math.random() +100;
+        let randomX = (700 - 140) * Math.random();
 
-        const fallingObstacles = new obstacle(randomX, 0, randomWidth, randomHeight, meteorito);
+        const fallingObstacles = new obstacle(randomX, 0, 140, 150, meteorito);
 
         fallingObstaclesArr.push(fallingObstacles);
     }
@@ -171,7 +172,7 @@ const animationLoop = function () {
             fallingObstaclesArr.shift()
         }
 
-        if (score === 5) {
+        if (score === 10) {
             clearInterval(intervalID);
             document.querySelector(".winner.hidden").classList.remove('hidden')
 

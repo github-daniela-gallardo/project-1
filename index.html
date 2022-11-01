@@ -10,24 +10,36 @@
 </head>
 
 <body>
-    <div>
-        <button id="start-button"><b>StartGame</b></button>
-        
-        <!-- <p class="start-button">Use the left and right arrow to save your live!</p> -->
-
-        
-        
+    <div class="score-div">
+        <h1>Score: <span id="score">0</span></h1>
     </div>
-    <h1>Score: <span id="score">0</span></h1>
+
+
+
+    <div class="button">
+        <button id="start-button"><b>🛸 StartGame 🛸</b></button>
+
+    </div>
+
+    <div>
+        <p class="instructions"> <b>Use the arrow keys ⬅️ ⬆️ ➡️ ⬇️ to save Marsi's live!</b></p>
+    </div>
+
+
+
     <div class="hidden loser">
         GAME OVER.
         <img src="./UFO-mad.png" alt="Sad-marsi">
     </div>
+
     <div class="hidden winner">
         You saved Marsi!
         <img src="./UFO-happy-no-background.png" alt="Marsi-happy">
     </div>
-    <canvas id="canvas" width="900" height="800"></canvas>
+
+    <div class="canva">
+        <canvas id="canvas" width="900" height="700"></canvas>
+    </div>
     <script src="index.js"></script>
 </body>
 
