@@ -66,6 +66,8 @@ h1 {
 
 .instructions {
     text-align: center;
+    font-family: "roboto";
+    font-size: 24px;
     
 }
 
@@ -73,10 +75,10 @@ h1 {
 
 
 
-.winner {
+#winner {
     display: block;
     color: white;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
     position: absolute;
     top: 55%;
@@ -86,17 +88,18 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.winner.hidden {
+/* .winner.hidden {
     display: none;
 }
 
 .loser.hidden {
     display: none;
-}
+} */
 
-.loser {
+#loser {
     display: block;
     color: white;
     font-size: 4rem;
@@ -109,4 +112,5 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 }

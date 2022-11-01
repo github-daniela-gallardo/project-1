@@ -1,16 +1,32 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 
+const clickAudio = new Audio('./click.mp3')
+const gameOverAudio = new Audio('./Game-over.mp3')
+const winAudio = new Audio('./Celebration.mp3')
+const soundTrack = new Audio('./soundtrack1.mp3')
+
 let intervalID;
 let fallingObstaclesArr = [];
 let frameCount = 0;
+let game = false
 
 let scoreElement = document.getElementById("score")
+let loseElement = document.querySelector("#loser")
+let winElement = document.querySelector("#winner")
+
 let score = 0
 
 let start = () => {
+    if (game === false){
+        game = true
+    console.log("START CLICKED")
+    loseElement.style.visibility = "hidden"
+    winElement.style.visibility = "hidden"
     startButton.style.visibility = "hidden"
-    intervalID = setInterval(animationLoop, 16);
+    clickAudio.play()
+
+    intervalID = setInterval(animationLoop, 16);}
 }
 
 let startButton = document.getElementById('start-button')
@@ -48,7 +64,7 @@ class player {
         this.y += 10;
     }
     draw() {
-        ctx.drawImage(this.image, this.x , this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 
         // ctx.fillStyle = this.color;
         // ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -130,7 +146,9 @@ let bounceCheck = () => {
 
 
 const animationLoop = function () {
+    console.log("ANIMATING")
 
+    soundTrack.play()
 
     frameCount++;
 
@@ -146,7 +164,8 @@ const animationLoop = function () {
         fallingObstaclesArr.push(fallingObstacles);
     }
 
-    
+
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 
@@ -157,11 +176,15 @@ const animationLoop = function () {
 
         if (myPlayer.collisionCheck(fallingObstaclesArr[i])) {
             clearInterval(intervalID);
+            game = false
+            fallingObstaclesArr = []
+            score = 0
 
-            document.querySelector(".loser.hidden").classList.remove('hidden')
-            
-
-            // display game over and sad music.
+            loseElement.style.visibility = "visible"
+            gameOverAudio.play()
+            startButton.style.visibility = "visible"
+            //let intervalID;
+            // let frameCount = 0
 
         }
 
@@ -173,8 +196,14 @@ const animationLoop = function () {
         }
 
         if (score === 10) {
+            score = 0
             clearInterval(intervalID);
-            document.querySelector(".winner.hidden").classList.remove('hidden')
+            winElement.style.visibility = "visible"
+            game = false
+            fallingObstaclesArr = []
+            // document.querySelector(".winner.hidden").classList.remove('hidden')
+            winAudio.play()
+            startButton.style.visibility = "visible"
 
         }
 
@@ -185,7 +214,7 @@ const animationLoop = function () {
     }
 
     bounceCheck()
-   
+
 }
 
 // intervalID = setInterval(animationLoop, 16);
