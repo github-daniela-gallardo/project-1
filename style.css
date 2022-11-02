@@ -6,7 +6,7 @@
 
 #canvas {
     border: solid black;
-    background-image: url(./background.jpeg);
+    background-image: url("./background.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     
