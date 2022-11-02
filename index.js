@@ -20,7 +20,7 @@ let score = 0
 let start = () => {
     if (game === false){
         game = true
-    console.log("START CLICKED")
+    // console.log("START CLICKED")
     loseElement.style.visibility = "hidden"
     winElement.style.visibility = "hidden"
     startButton.style.visibility = "hidden"
@@ -49,19 +49,19 @@ class player {
     }
 
     moveLeft() {
-        this.x -= 10;
+        this.x -= 20;
 
     }
     moveRight() {
-        this.x += 10;
+        this.x += 20;
 
     }
     moveUp() {
-        this.y -= 10;
+        this.y -= 20;
 
     }
     moveDown() {
-        this.y += 10;
+        this.y += 20;
     }
     draw() {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -146,7 +146,7 @@ let bounceCheck = () => {
 
 
 const animationLoop = function () {
-    console.log("ANIMATING")
+    // console.log("ANIMATING")
 
     soundTrack.play()
 
